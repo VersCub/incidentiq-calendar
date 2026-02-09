@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Public Calendar</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #public-calendar {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div id="public-calendar"></div>
+
+  <script>
+    const origin = "https://forneyisd.incidentiq.com";
+
+    (function(doc, tag, id) {
+      if (doc.getElementById(id)) return;
+      const s = doc.createElement(tag);
+      s.id = id;
+      s.src = origin + "/core/shared/public-calendar.js";
+      s.type = "text/javascript";
+      s.onload = function () {
+        PublicCalendar.setOptions({
+          origin: origin,
+          targetId: "public-calendar",
+          upcoming: false,
+          viewId: "37da6eec-6d95-f011-b484-002248538047"
+        });
+        PublicCalendar.render();
+      };
+      doc.body.appendChild(s);
+    })(document, "script", "public-calendar-script");
+  </script>
+</body>
+</html>
